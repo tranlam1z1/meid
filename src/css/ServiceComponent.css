@@ -1,0 +1,110 @@
+.core-services {
+  padding: 0 50px;
+}
+
+.service-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff0000; 
+  font-size: 1.5em;
+}
+
+.main-services {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.service-list {
+  display: flex;
+}
+
+.service-item {
+  width: 300px;
+  padding: 15px;
+}
+
+.service-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.service-name {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.view-more {
+  background-color: #ff0000; 
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.finance-banking-title {
+    font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff0000; 
+  font-size: 1.5em;
+}
+
+.finance-banking-service {
+ font-size: 2.5em;
+  margin-bottom: 20px;
+    padding: 15px;
+}
+
+.finance-banking-service img {
+    width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.finance-banking-service-name {
+  font-size: 16px;
+}
+
+.finance-banking-view-more {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.personal-services-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff0000;
+}
+
+.personal-services-description {
+ font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.personal-services-service {
+  padding: 15px;
+  display: inline-block;
+}
+
+.personal-services-service img {
+    width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.personal-services-service-name {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.personal-services-view-more {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+}

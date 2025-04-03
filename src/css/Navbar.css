@@ -1,0 +1,30 @@
+.navbar-container {
+  background-image: url('../asset/image/img.png');
+  background-size: cover;
+  background-position: center;
+  height: 530px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  color: white;
+}
+
+.content {
+  width: 50%;
+  padding: 20px;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+}
+
+.content p {
+  margin-bottom: 30px;
+}
+
+.contact-service {
+   background-color: #f40909;
+  color: white;
+  border: none;
+}
