@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/Button.css';
-function Button({ text, onClick, className }) {
+import '../asset/css/Button.css';
+function Button({ text, className }) {
     return (
-        <button className="custom-button">
+        <button className={`custom-button ${className}`} >
             {text}
         </button>
     );
