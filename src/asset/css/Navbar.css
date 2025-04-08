@@ -1,5 +1,5 @@
 .navbar-container {
-  background-image: url('../asset/image/img.png');
+  background-image: url('../image/img.png');
   background-size: cover;
   background-position: center;
   height: 530px;
@@ -19,7 +19,7 @@
   margin-bottom: 20px;
 }
 
-.content p {
+.content p {  
   margin-bottom: 30px;
 }
 

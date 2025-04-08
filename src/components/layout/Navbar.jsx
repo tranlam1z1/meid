@@ -1,6 +1,6 @@
 import React from 'react'
-import '../css/Navbar.css';
-import Button from './Button';
+import '../../asset/css/Navbar.css';
+import Button from '../ui/Button';
 
 function Navbar() {
   return (

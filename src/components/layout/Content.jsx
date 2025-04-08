@@ -1,10 +1,10 @@
 import React from 'react';
-import '../css/Content.css';
-import image1 from '../asset/image/image1.png';
-import image2 from '../asset/image/image2.png';
-import image3 from '../asset/image/image3.png';
+import '../../asset/css/Content.css';
+import image1 from '../../asset/image/image1.png';
+import image2 from '../../asset/image/image2.png';
+import image3 from '../../asset/image/image3.png';
+import Button from '../ui/Button';
 
-import Button from './Button';
 
 function Content() {
     return (

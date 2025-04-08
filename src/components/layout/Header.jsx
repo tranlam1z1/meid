@@ -1,6 +1,7 @@
 import React from 'react';
-import '../css/Header.css';
-import Button from '../components/Button';
+import '../../asset/css/Header.css';
+import Button from '../ui/Button';
+import logo from '../../asset/image/logo.png'; 
 
 const MENU_ITEMS = [
   { id: 1, text: 'Dành cho cá nhân', href: '#' },
@@ -15,7 +16,7 @@ function Header() {
     <div className="header">
       <div className="header-container">
         <div className="logo">
-          <img src="logo.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
         <nav className="menu">
           <ul className="menu-list">

@@ -2,14 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faAppStoreIos, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
-import '../css/Footer.css';
+import '../../asset/css/Footer.css';
+import logo from '../../asset/image/logo.png'; 
 
 function Footer() {
     return (
         <div className="footer">
             <div className="footer-content">
                 <div className="footer-left">
-                    <img src="path/to/logo.png" alt="Logo" className="footer-logo" />
+                    <img src={logo} alt="Logo" className="footer-logo" />
                     <div className="footer-title">TRUNG TÂM NGHIÊN CỨU VÀ ỨNG DỤNG DỮ LIỆU DÂN CƯ VÀ CĂN CƯỚC CÔNG DÂN</div>
                 </div>
                 <div className="footer-center">
