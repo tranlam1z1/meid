@@ -8,6 +8,7 @@ import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import './Login.css'
+import useLogin from '../../../hooks/useLogin'
 
 const usernameRegex = /^[a-z0-9_]+$/i
 
@@ -29,9 +30,18 @@ function Login() {
         mode: 'onBlur',
     })
 
+    const loginMutation = useLogin();
+
     const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
-    }
+        loginMutation.mutate(data, {
+            onSuccess: (res) => {
+                console.log('Đăng nhập thành công!', res);
+            },
+            onError: (err) => {
+                console.error('Lỗi đăng nhập:', err);
+            },
+        });
+    };
 
     return (
         <div className="container-login">
