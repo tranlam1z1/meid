@@ -36,10 +36,7 @@ function Login() {
         loginMutation.mutate(data, {
             onSuccess: (res) => {
                 console.log('Đăng nhập thành công!', res);
-                localStorage.setItem('accessToken', res.accessToken);
                 localStorage.setItem('username', res.username);
-                localStorage.setItem('firstName', res.firstName);
-                localStorage.setItem('lastName', res.lastName);
             },
             onError: (err) => {
                 console.error('Lỗi đăng nhập:', err);
