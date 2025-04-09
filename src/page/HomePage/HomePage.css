@@ -1,0 +1,28 @@
+.button7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.button7 button {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.customer-text{
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.button-service{
+    background-color: #e53935;
+    color: white;
+    border: none;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+}

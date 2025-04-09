@@ -1,5 +1,16 @@
 import React from "react";
 import {
+    Box,
+    Typography,
+    Grid,
+    Container,
+    Button,
+    Card,
+    CardMedia,
+    CardContent,
+    CardActions
+} from "@mui/material";
+import {
     SERVICE_TITLE,
     MAIN_SERVICES_TITLE,
     SERVICE_DATA,
@@ -9,44 +20,115 @@ import {
     PERSONAL_SERVICES_DESCRIPTION,
     PERSONAL_SERVICES_SERVICE,
 } from "../../const/service";
-import "../../asset/css/ServiceComponent.css";
-import Button from "../../components/ui/Button";
+import Navbar from "../../components/layout/Navbar";
+import Content from "../../components/layout/Content";
 
 function IndividulDetail() {
     return (
         <>
-            <div className="core-services">
-                <div className="service-title">{SERVICE_TITLE}</div>
-                <div className="main-services">{MAIN_SERVICES_TITLE}</div>
-                <div className="service-list">
-                    {SERVICE_DATA.map((service, index) => (
-                        <div className="service-item" key={index}>
-                            <img src={service.image} alt={service.alt} />
-                            <div className="service-name">{service.name}</div>
-                            <Button text={service.buttonText} className="view-more"></Button>
-                        </div>
-                    ))}
-                </div>
+            <Navbar />
+            <Content />
+            <Container maxWidth="lg" sx={{ py: 6 }}>
+                <Box sx={{ mb: 8 }}>
+                    <Typography variant="h6" color="error" fontWeight="bold" gutterBottom>
+                        {SERVICE_TITLE}
+                    </Typography>
+                    <Typography variant="h3" fontWeight="bold" gutterBottom sx={{ mb: 4 }}>
+                        {MAIN_SERVICES_TITLE}
+                    </Typography>
 
-                <div className="finance-banking">
-                    <div className="finance-banking-title">{FINANCE_BANKING_TITLE}</div>
-                    <div className="finance-banking-service">
-                        <img src={FINANCE_BANKING_SERVICE.image} alt={FINANCE_BANKING_SERVICE.alt} />
-                        <div className="finance-banking-service-name">{FINANCE_BANKING_SERVICE.name}</div>
-                        <Button text={FINANCE_BANKING_SERVICE.buttonText} className="view-more"></Button>
-                    </div>
-                </div>
+                    <Grid container spacing={4}>
+                        {SERVICE_DATA.map((service, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                    <CardMedia
+                                        component="img"
+                                        image={service.image}
+                                        alt={service.alt}
+                                        sx={{ height: 200, objectFit: 'cover' }}
+                                    />
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            {service.name}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button
+                                            variant="contained"
+                                            color="error"
+                                            fullWidth
+                                            sx={{ mx: 1, mb: 1 }}
+                                        >
+                                            {service.buttonText}
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
 
-                <div className="personal-services">
-                    <div className="personal-services-title">{PERSONAL_SERVICES_TITLE}</div>
-                    <div className="personal-services-description">{PERSONAL_SERVICES_DESCRIPTION}</div>
-                    <div className="personal-services-service">
-                        <img src={PERSONAL_SERVICES_SERVICE.image} alt={PERSONAL_SERVICES_SERVICE.alt} />
-                        <div className="personal-services-service-name">{PERSONAL_SERVICES_SERVICE.name}</div>
-                        <Button text={PERSONAL_SERVICES_SERVICE.buttonText} className="view-more"></Button>
-                    </div>
-                </div>
-            </div>
+                <Box sx={{ mb: 8 }}>
+                    <Typography variant="h6" color="error" fontWeight="bold" gutterBottom>
+                        {FINANCE_BANKING_TITLE}
+                    </Typography>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardMedia
+                            component="img"
+                            image={FINANCE_BANKING_SERVICE.image}
+                            alt={FINANCE_BANKING_SERVICE.alt}
+                            sx={{ height: 200, objectFit: 'cover' }}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="div">
+                                {FINANCE_BANKING_SERVICE.name}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button
+                                variant="contained"
+                                color="error"
+                                fullWidth
+                                sx={{ mx: 1, mb: 1 }}
+                            >
+                                {FINANCE_BANKING_SERVICE.buttonText}
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Box>
+
+                <Box>
+                    <Typography variant="h6" color="error" fontWeight="bold" gutterBottom>
+                        {PERSONAL_SERVICES_TITLE}
+                    </Typography>
+                    <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
+                        {PERSONAL_SERVICES_DESCRIPTION}
+                    </Typography>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardMedia
+                            component="img"
+                            image={PERSONAL_SERVICES_SERVICE.image}
+                            alt={PERSONAL_SERVICES_SERVICE.alt}
+                            sx={{ height: 200, objectFit: 'cover' }}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="div">
+                                {PERSONAL_SERVICES_SERVICE.name}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button
+                                variant="contained"
+                                color="error"
+                                fullWidth
+                                sx={{ mx: 1, mb: 1 }}
+                            >
+                                {PERSONAL_SERVICES_SERVICE.buttonText}
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Box>
+            </Container>
         </>
     );
 }

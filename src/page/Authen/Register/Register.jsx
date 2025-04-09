@@ -1,12 +1,21 @@
-import React from 'react'
-import image5 from '../../../asset/image/image5.png'
-import './Register.css'
-import logo from '../../../asset/image/logo.png'
-import Button from '../../../components/ui/Button'
-import { InputAdornment, Link, TextField, FormHelperText } from '@mui/material'
-import { useForm, Controller } from 'react-hook-form'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
+import React from 'react';
+import {
+    Box,
+    Button as MuiButton,
+    Container,
+    Grid,
+    Stack,
+    TextField,
+    Typography,
+    Link,
+    FormHelperText
+} from '@mui/material';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import image5 from '../../../asset/image/image5.png';
+import logo from '../../../asset/image/logo.png';
 
 const schema = yup.object().shape({
     username: yup
@@ -31,141 +40,157 @@ const schema = yup.object().shape({
         .string()
         .required('Vui lòng nhập lại mật khẩu')
         .oneOf([yup.ref('password'), null], 'Mật khẩu không khớp'),
-})
+});
 
 function Register() {
     const {
         handleSubmit,
         control,
-        watch,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
-    })
+    });
 
     const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
-    }
+        console.log("Dữ liệu đăng ký:", data);
+    };
 
     return (
-        <div className="container-register">
-            <div className="left-content">
-                <img src={image5} alt="Banner" />
-            </div>
-            <div className="right-content-register">
-                <div className="logo-register">
-                    <img src={logo} alt="Logo" className="footer-logo" />
-                    <p className="title-register">Đăng ký tài khoản MeID</p>
-                </div>
-                <form onSubmit={handleSubmit(onSubmit)} className="input-register-container">
-                    <Controller
-                        name="username"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Tên đăng nhập"
-                                    variant="outlined"
-                                    className="input-register"
-                                    error={Boolean(errors.username)}
-                                />
-                                {errors.username && <FormHelperText error>{errors.username.message}</FormHelperText>}
-                            </>
-                        )}
-                    />
+        <Grid container sx={{display: 'flex', alignItems: 'center', flexWrap: 'nowrap'}}>
+            <Grid item xs={12} md={7}>
+                <Box
+                    component="img"
+                    src={image5}
+                    alt="Banner"
+                    sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </Grid>
 
-                    <Controller
-                        name="idCard"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Căn cước công dân"
-                                    variant="outlined"
-                                    className="input-register"
-                                    style={{ marginTop: 20 }}
-                                    error={Boolean(errors.idCard)}
-                                />
-                                {errors.idCard && <FormHelperText error>{errors.idCard.message}</FormHelperText>}
-                            </>
-                        )}
-                    />
+            <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center">
+                <Container maxWidth="xs">
+                    <Stack spacing={3} alignItems="center">
+                        <Box
+                            component="img"
+                            src={logo}
+                            alt="Logo"
+                            sx={{ height: 60 }}
+                        />
+                        <Typography variant="h5" fontWeight={600}>
+                            Đăng ký tài khoản MeID
+                        </Typography>
 
-                    <Controller
-                        name="phone"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Số điện thoại"
-                                    variant="outlined"
-                                    className="input-register"
-                                    style={{ marginTop: 20 }}
-                                    error={Boolean(errors.phone)}
-                                />
-                                {errors.phone && <FormHelperText error>{errors.phone.message}</FormHelperText>}
-                            </>
-                        )}
-                    />
-
-                    <Controller
-                        name="password"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Mật khẩu"
-                                    type="password"
-                                    variant="outlined"
-                                    className="input-register"
-                                    style={{ marginTop: 20 }}
-                                    error={Boolean(errors.password)}
-                                />
-                                {errors.password && <FormHelperText error>{errors.password.message}</FormHelperText>}
-                            </>
-                        )}
-                    />
-
-                    <Controller
-                        name="confirmPassword"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Nhập lại mật khẩu"
-                                    type="password"
-                                    variant="outlined"
-                                    className="input-register"
-                                    style={{ marginTop: 20 }}
-                                    error={Boolean(errors.confirmPassword)}
-                                />
-                                {errors.confirmPassword && (
-                                    <FormHelperText error>{errors.confirmPassword.message}</FormHelperText>
+                        <Box component="form" onSubmit={handleSubmit(onSubmit)} width="100%">
+                            <Controller
+                                name="username"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Tên đăng nhập"
+                                        variant="outlined"
+                                        error={Boolean(errors.username)}
+                                        helperText={errors.username?.message}
+                                    />
                                 )}
-                            </>
-                        )}
-                    />
+                            />
 
-                    <Button text="Đăng ký" className="register-button" type="submit" />
-                </form>
-                <div className="register-container">
-                    <div className="register-link">
-                        Đã có tài khoản? <Link href="/login" underline="none">Đăng nhập ngay</Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+                            <Controller
+                                name="idCard"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Căn cước công dân"
+                                        variant="outlined"
+                                        error={Boolean(errors.idCard)}
+                                        helperText={errors.idCard?.message}
+                                        sx={{ mt: 2 }}
+                                    />
+                                )}
+                            />
+
+                            <Controller
+                                name="phone"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Số điện thoại"
+                                        variant="outlined"
+                                        error={Boolean(errors.phone)}
+                                        helperText={errors.phone?.message}
+                                        sx={{ mt: 2 }}
+                                    />
+                                )}
+                            />
+
+                            <Controller
+                                name="password"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Mật khẩu"
+                                        type="password"
+                                        variant="outlined"
+                                        error={Boolean(errors.password)}
+                                        helperText={errors.password?.message}
+                                        sx={{ mt: 2 }}
+                                    />
+                                )}
+                            />
+
+                            <Controller
+                                name="confirmPassword"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Nhập lại mật khẩu"
+                                        type="password"
+                                        variant="outlined"
+                                        error={Boolean(errors.confirmPassword)}
+                                        helperText={errors.confirmPassword?.message}
+                                        sx={{ mt: 2 }}
+                                    />
+                                )}
+                            />
+
+                            <MuiButton
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{
+                                    mt: 3,
+                                    backgroundColor: '#e53935',
+                                    '&:hover': { backgroundColor: '#d32f2f' }
+                                }}
+                            >
+                                Đăng ký
+                            </MuiButton>
+                        </Box>
+
+                        <Typography variant="body2" color="text.secondary" mt={1}>
+                            Đã có tài khoản?{' '}
+                            <Link href="/login" underline="none">
+                                Đăng nhập ngay
+                            </Link>
+                        </Typography>
+                    </Stack>
+                </Container>
+            </Grid>
+        </Grid>
+    );
 }
 
-export default Register
+export default Register;

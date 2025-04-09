@@ -1,16 +1,27 @@
-import React from 'react'
-import image5 from '../../../asset/image/image5.png'
-import logo from '../../../asset/image/logo.png'
-import Button from '../../../components/ui/Button'
-import vneid from '../../../asset/image/vneid.png'
-import { Checkbox, FormControlLabel, Link, TextField, FormHelperText } from '@mui/material'
-import { useForm, Controller } from 'react-hook-form'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import './Login.css'
-import useLogin from '../../../hooks/useLogin'
+import React from 'react';
+import {
+    Box,
+    Button as MuiButton,
+    Checkbox,
+    Container,
+    FormControlLabel,
+    FormHelperText,
+    Grid,
+    Link,
+    Stack,
+    TextField,
+    Typography
+} from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-const usernameRegex = /^[a-z0-9_]+$/i
+import image5 from '../../../asset/image/image5.png';
+import logo from '../../../asset/image/logo.png';
+import vneid from '../../../asset/image/vneid.png';
+import useLogin from '../../../hooks/useLogin';
+
+const usernameRegex = /^[a-z0-9_]+$/i;
 
 const schema = yup.object().shape({
     username: yup
@@ -22,13 +33,17 @@ const schema = yup.object().shape({
         .string()
         .required('Mật khẩu là bắt buộc')
         .max(50, 'Mật khẩu tối đa 50 ký tự'),
-})
+});
 
 function Login() {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const {
+        control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
         resolver: yupResolver(schema),
-        mode: 'onBlur',
-    })
+        mode: 'onBlur'
+    });
 
     const loginMutation = useLogin();
 
@@ -40,91 +55,119 @@ function Login() {
             },
             onError: (err) => {
                 console.error('Lỗi đăng nhập:', err);
-            },
+            }
         });
     };
 
     return (
-        <div className="container-login">
-            <div className="left-content">
-                <img src={image5} alt="Banner" />
-            </div>
-            <div className="right-content-login">
-                <div className='logo-login'>
-                    <img src={logo} alt="Logo" className="footer-logo" />
-                    <p className='title-login'>Đăng nhập</p>
-                </div>
+        <Grid container sx={{display: 'flex', alignItems: 'center', flexWrap: 'nowrap'}}>
+            <Grid item xs={12} md={7}>
+                <Box
+                    component="img"
+                    src={image5}
+                    alt="Banner"
+                    sx={{ width: '100%', }}
+                />
+            </Grid>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="input-login-container">
-                    <Controller
-                        name="username"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    label="Tên đăng nhập"
-                                    variant="outlined"
-                                    className="input-login"
-                                    error={Boolean(errors.username)}
-                                />
-                                {errors.username && (
-                                    <FormHelperText error>{errors.username.message}</FormHelperText>
-                                )}
-                            </>
-                        )}
-                    />
-
-                    <Controller
-                        name="password"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                            <>
-                                <TextField
-                                    {...field}
-                                    type="password"
-                                    label="Mật khẩu"
-                                    variant="outlined"
-                                    className="input-login"
-                                    style={{ marginTop: '20px' }}
-                                    error={Boolean(errors.password)}
-                                />
-                                {errors.password && (
-                                    <FormHelperText error>{errors.password.message}</FormHelperText>
-                                )}
-                            </>
-                        )}
-                    />
-
-                    <div className='checkbox-container'>
-                        <FormControlLabel
-                            control={<Checkbox />}
-                            label="Duy trì đăng nhập"
-                            className="checkbox-login"
+            <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center">
+                <Container maxWidth="xs">
+                    <Stack spacing={3} alignItems="center">
+                        <Box
+                            component="img"
+                            src={logo}
+                            alt="Logo"
+                            sx={{ height: 60 }}
                         />
-                        <Link href="/forgot-password" underline="none">
-                            Quên mật khẩu?
-                        </Link>
-                    </div>
+                        <Typography variant="h5" fontWeight={600}>
+                            Đăng nhập
+                        </Typography>
 
-                    <Button type="submit" text="Đăng nhập" className="login-button" />
-                </form>
+                        <Box component="form" onSubmit={handleSubmit(onSubmit)} width="100%">
+                            <Controller
+                                name="username"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Tên đăng nhập"
+                                        variant="outlined"
+                                        error={Boolean(errors.username)}
+                                        helperText={errors.username?.message}
+                                        autoComplete="username"
+                                    />
+                                )}
+                            />
 
-                <div className='register-container'>
-                    <div className="register-link">
-                        Bạn chưa có tài khoản?{' '}
-                        <Link href="/register" underline="none">
-                            Đăng ký ngay
-                        </Link>
-                    </div>
-                    <p>hoặc đăng nhập với VNEID</p>
-                    <img src={vneid} alt="VNEID" className="vneid-logo" />
-                </div>
-            </div>
-        </div>
-    )
+                            <Controller
+                                name="password"
+                                control={control}
+                                defaultValue=""
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        type="password"
+                                        label="Mật khẩu"
+                                        variant="outlined"
+                                        error={Boolean(errors.password)}
+                                        helperText={errors.password?.message}
+                                        sx={{ mt: 2 }}
+                                        autoComplete="current-password"
+                                    />
+                                )}
+                            />
+
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                mt={2}
+                            >
+                                <FormControlLabel
+                                    control={<Checkbox />}
+                                    label="Duy trì đăng nhập"
+                                />
+                                <Link href="/forgot-password" underline="none">
+                                    Quên mật khẩu?
+                                </Link>
+                            </Box>
+
+                            <MuiButton
+                                type="submit"
+                                variant="contained"
+                                fullWidth
+                                sx={{ mt: 3, backgroundColor: '#e53935', '&:hover': { backgroundColor: '#d32f2f' } }}
+                                disabled={loginMutation.isLoading}
+                            >
+                                {loginMutation.isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+                            </MuiButton>
+                        </Box>
+
+                        <Stack spacing={1} alignItems="center" mt={3}>
+                            <Typography variant="body2">
+                                Bạn chưa có tài khoản?{' '}
+                                <Link href="/register" underline="none">
+                                    Đăng ký ngay
+                                </Link>
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                hoặc đăng nhập với VNEID
+                            </Typography>
+                            <Box
+                                component="img"
+                                src={vneid}
+                                alt="VNEID"
+                                sx={{ width: 100 }}
+                            />
+                        </Stack>
+                    </Stack>
+                </Container>
+            </Grid>
+        </Grid>
+    );
 }
 
-export default Login
+export default Login;
