@@ -91,3 +91,13 @@
   color: white;
     border: 1px solid rgb(246, 9, 9);
 }
+
+.user-avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

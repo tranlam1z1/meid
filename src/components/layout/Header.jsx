@@ -3,6 +3,7 @@ import '../../asset/css/Header.css';
 import Button from '../ui/Button';
 import logo from '../../asset/image/logo.png'; 
 import { Link } from 'react-router-dom';
+import avatar from '../../asset/image/user.jfif'; 
 
 const MENU_ITEMS = [
   { id: 1, text: 'Dành cho cá nhân', href: '#' },
@@ -13,6 +14,8 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
+  const username = localStorage.getItem('username');
+
   return (
     <div className="header">
       <div className="header-container">
@@ -28,12 +31,20 @@ function Header() {
             ))}
           </ul>
           <div className="auth-buttons">
-            <Link to="/register">
-              <Button text="Đăng ký" className="register" />
-            </Link>
-            <Link to="/login">
-              <Button text="Đăng nhập" className="login" />
-            </Link>
+            {username ? (
+              <div className="user-info">
+                <img src={avatar} alt="User Avatar" className="user-avatar" />
+              </div>
+            ) : (
+              <>
+                  <Link to="/register">
+                    <Button text="Đăng ký" className="register" />
+                  </Link>
+                  <Link to="/login">
+                    <Button text="Đăng nhập" className="login" />
+                  </Link>
+              </>
+            )}
           </div>
         </nav>
       </div>
