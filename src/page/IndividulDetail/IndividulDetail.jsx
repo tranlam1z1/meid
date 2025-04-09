@@ -11,13 +11,10 @@ import {
 } from "../../const/service";
 import "../../asset/css/ServiceComponent.css";
 import Button from "../../components/ui/Button";
-import MeIDLayout from "../../layout/MeIDLayout";
-import Footer from "../../components/layout/Footer";
 
 function IndividulDetail() {
     return (
         <>
-        <MeIDLayout/>
             <div className="core-services">
                 <div className="service-title">{SERVICE_TITLE}</div>
                 <div className="main-services">{MAIN_SERVICES_TITLE}</div>
@@ -50,7 +47,6 @@ function IndividulDetail() {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </>
     );
 }

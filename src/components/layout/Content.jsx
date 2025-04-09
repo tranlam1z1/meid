@@ -9,7 +9,7 @@ import Button from '../ui/Button';
 function Content() {
     return (
         <div className="container">
-            <div className="left-content">
+            <div className="left-content-service">
                 <p className="section-title">DỊCH VỤ CỦA MelD</p>
                 <p className="main-title">Lợi ích khi sử dụng dịch vụ của MelD</p>
                 <p className="description">

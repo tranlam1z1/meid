@@ -2,6 +2,7 @@ import React from 'react';
 import '../../asset/css/Header.css';
 import Button from '../ui/Button';
 import logo from '../../asset/image/logo.png'; 
+import { Link } from 'react-router-dom';
 
 const MENU_ITEMS = [
   { id: 1, text: 'Dành cho cá nhân', href: '#' },
@@ -27,8 +28,12 @@ function Header() {
             ))}
           </ul>
           <div className="auth-buttons">
-            <Button text="Đăng ký" className="register" />
-            <Button text="Đăng nhập" className="login" />
+            <Link to="/register">
+              <Button text="Đăng ký" className="register" />
+            </Link>
+            <Link to="/login">
+              <Button text="Đăng nhập" className="login" />
+            </Link>
           </div>
         </nav>
       </div>
