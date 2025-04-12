@@ -67,7 +67,6 @@ function Register() {
             </Grid>
 
             <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center">
-                <Container maxWidth="xs">
                     <Stack spacing={3} alignItems="center">
                         <Box
                             component="img"
@@ -187,7 +186,6 @@ function Register() {
                             </Link>
                         </Typography>
                     </Stack>
-                </Container>
             </Grid>
         </Grid>
     );

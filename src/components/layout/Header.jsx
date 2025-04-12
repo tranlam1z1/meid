@@ -7,9 +7,15 @@ import {
   Button,
   Avatar,
   styled,
-  Container
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../../asset/image/logo.png';
 import avatar from '../../asset/image/user.jfif';
 
@@ -31,12 +37,19 @@ const MenuItems = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(3),
   alignItems: 'center',
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(1),
+  },
 }));
 
 const AuthButtons = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(2),
   marginLeft: theme.spacing(4),
+  [theme.breakpoints.down('sm')]: {
+    marginLeft: theme.spacing(1),
+    gap: theme.spacing(1),
+  },
 }));
 
 const Logo = styled('img')({
@@ -44,6 +57,9 @@ const Logo = styled('img')({
   transition: 'transform 0.3s ease',
   '&:hover': {
     transform: 'scale(1.05)',
+  },
+  '@media (max-width: 600px)': {
+    height: 40,
   },
 });
 
@@ -53,10 +69,26 @@ const MenuLink = styled(Button)(({ theme }) => ({
     color: theme.palette.grey[300],
     backgroundColor: 'transparent',
   },
+  [theme.breakpoints.down('md')]: {
+    fontSize: '0.875rem',
+    padding: theme.spacing(0.5, 1),
+  },
 }));
 
 function Header() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
   const username = localStorage.getItem('username');
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar
@@ -74,15 +106,32 @@ function Header() {
           </Link>
 
           <MenuItems component="nav">
-            {MENU_ITEMS.map(item => (
-              <MenuLink
-                key={item.id}
-                href={item.href}
-                component="a"
+            {!isMobile ? (
+              <>
+                {MENU_ITEMS.map(item => (
+                  <MenuLink
+                    key={item.id}
+                    href={item.href}
+                    component="a"
+                  >
+                    {item.text}
+                  </MenuLink>
+                ))}
+              </>
+            ) : (
+              <IconButton
+                edge="end"  // Thay đổi từ "start" thành "end" để đẩy sang phải
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMenuOpen}
+                sx={{
+                  ml: 'auto', // Tự động căn lề trái để đẩy sang phải
+                  order: 1 // Đảm bảo nút menu ở cuối cùng
+                }}
               >
-                {item.text}
-              </MenuLink>
-            ))}
+                <MenuIcon />
+              </IconButton>
+            )}
 
             <AuthButtons>
               {username ? (
@@ -97,12 +146,17 @@ function Header() {
                     component={Link}
                     to="/register"
                     variant="contained"
+                    size={isMobile ? "small" : "medium"}
                     sx={{
                       backgroundColor: '#a52a2a',
                       '&:hover': {
                         backgroundColor: '#8a2323',
                       },
                       border: '1px solid #f60909',
+                      [theme.breakpoints.down('sm')]: {
+                        fontSize: '0.75rem',
+                        padding: theme.spacing(0.5, 1),
+                      },
                     }}
                   >
                     Đăng ký
@@ -111,10 +165,15 @@ function Header() {
                     component={Link}
                     to="/login"
                     variant="contained"
+                    size={isMobile ? "small" : "medium"}
                     sx={{
                       backgroundColor: '#f40909',
                       '&:hover': {
                         backgroundColor: '#d30808',
+                      },
+                      [theme.breakpoints.down('sm')]: {
+                        fontSize: '0.75rem',
+                        padding: theme.spacing(0.5, 1),
                       },
                     }}
                   >
@@ -126,6 +185,47 @@ function Header() {
           </MenuItems>
         </StyledToolbar>
       </Container>
+
+      {/* Mobile menu - Điều chỉnh vị trí */}
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleMenuClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        PaperProps={{
+          style: {
+            width: '60%',
+            backgroundColor: '#800000',
+            color: 'white',
+            marginTop: '8px', // Khoảng cách với nút menu
+            right: '16px', // Đặt vị trí right
+            left: 'auto !important', // Ghi đè left mặc định
+          },
+        }}
+      >
+        {MENU_ITEMS.map(item => (
+          <MenuItem
+            key={item.id}
+            onClick={handleMenuClose}
+            component="a"
+            href={item.href}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#a52a2a',
+              },
+            }}
+          >
+            {item.text}
+          </MenuItem>
+        ))}
+      </Menu>
     </AppBar>
   );
 }

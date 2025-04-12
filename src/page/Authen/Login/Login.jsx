@@ -60,7 +60,7 @@ function Login() {
     };
 
     return (
-        <Grid container sx={{display: 'flex', alignItems: 'center', flexWrap: 'nowrap'}}>
+        <Grid container sx={{flexWrap: 'nowrap'}}>
             <Grid item xs={12} md={7}>
                 <Box
                     component="img"
@@ -71,7 +71,6 @@ function Login() {
             </Grid>
 
             <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center">
-                <Container maxWidth="xs">
                     <Stack spacing={3} alignItems="center">
                         <Box
                             component="img"
@@ -164,7 +163,6 @@ function Login() {
                             />
                         </Stack>
                     </Stack>
-                </Container>
             </Grid>
         </Grid>
     );

@@ -18,7 +18,12 @@ function Content() {
 
     return (
         <Container maxWidth="lg" sx={{ py: 6 }}>
-            <Grid container spacing={4} sx={{display: 'flex', alignItems: 'center', flexWrap: 'nowrap'}}>
+            <Grid container spacing={4} sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: { xs: 'wrap', md: 'nowrap' }
+            }}
+>
                 <Grid item xs={12} md={6} sx={{ width: '100%' }}>
                     <Box>
                         <Typography
@@ -54,7 +59,8 @@ function Content() {
                                     sx={{
                                         p: 3,
                                         borderRadius: 2,
-                                        width: 263,
+                                        maxWidth: 300,
+                                        width: '100%',
                                         [theme.breakpoints.down('sm')]: { width: '100%' }
                                     }}
                                 >
@@ -63,11 +69,11 @@ function Content() {
                                     </Typography>
                                     <Button
                                         variant="contained"
+                                        fullWidth
                                         sx={{
                                             bgcolor: 'error.main',
                                             color: 'white',
                                             mt: 2,
-                                            width: '100%',
                                             '&:hover': { bgcolor: 'error.dark' }
                                         }}
                                     >
@@ -77,7 +83,14 @@ function Content() {
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
-                                <Box>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: { xs: 'center', sm: 'flex-start' },
+                                        textAlign: { xs: 'center', sm: 'left' }
+                                    }}
+                                >
                                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                                         <Avatar
                                             src={image2}
@@ -121,9 +134,13 @@ function Content() {
                             alt="MelD service illustration"
                             sx={{
                                 width: '100%',
-                                objectFit: 'contain'
+                                maxWidth: 500,
+                                objectFit: 'contain',
+                                mx: 'auto',
+                                p: { xs: 2, md: 0 }
                             }}
                         />
+
                     </Box>
                 </Grid>
             </Grid>
