@@ -5,7 +5,6 @@ import {
     Checkbox,
     Container,
     FormControlLabel,
-    FormHelperText,
     Grid,
     Link,
     Stack,
@@ -60,109 +59,96 @@ function Login() {
     };
 
     return (
-        <Grid container sx={{flexWrap: 'nowrap'}}>
+        <Grid container sx={{ flexWrap: 'nowrap' }} spacing={0}>
             <Grid item xs={12} md={7}>
                 <Box
                     component="img"
                     src={image5}
                     alt="Banner"
-                    sx={{ width: '100%', }}
+                    sx={{ width: '100%', height: '100vh', objectFit: 'cover' }}
                 />
             </Grid>
 
-            <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center">
-                    <Stack spacing={3} alignItems="center">
-                        <Box
-                            component="img"
-                            src={logo}
-                            alt="Logo"
-                            sx={{ height: 60 }}
-                        />
-                        <Typography variant="h5" fontWeight={600}>
-                            Đăng nhập
-                        </Typography>
+            <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="center" sx={{ backgroundColor: '#fff' }}>
+                <Stack spacing={3} alignItems="center" width="100%" maxWidth="400px" sx={{ p: 3 }}>
+                    <Box component="img" src={logo} alt="Logo" sx={{ height: 60 }} />
+                    <Typography variant="h5" fontWeight={600} textAlign="center">
+                        Đăng nhập
+                    </Typography>
 
-                        <Box component="form" onSubmit={handleSubmit(onSubmit)} width="100%">
-                            <Controller
-                                name="username"
-                                control={control}
-                                defaultValue=""
-                                render={({ field }) => (
-                                    <TextField
-                                        {...field}
-                                        fullWidth
-                                        label="Tên đăng nhập"
-                                        variant="outlined"
-                                        error={Boolean(errors.username)}
-                                        helperText={errors.username?.message}
-                                        autoComplete="username"
-                                    />
-                                )}
-                            />
-
-                            <Controller
-                                name="password"
-                                control={control}
-                                defaultValue=""
-                                render={({ field }) => (
-                                    <TextField
-                                        {...field}
-                                        fullWidth
-                                        type="password"
-                                        label="Mật khẩu"
-                                        variant="outlined"
-                                        error={Boolean(errors.password)}
-                                        helperText={errors.password?.message}
-                                        sx={{ mt: 2 }}
-                                        autoComplete="current-password"
-                                    />
-                                )}
-                            />
-
-                            <Box
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                mt={2}
-                            >
-                                <FormControlLabel
-                                    control={<Checkbox />}
-                                    label="Duy trì đăng nhập"
+                    <Box component="form" onSubmit={handleSubmit(onSubmit)} width="100%">
+                        <Controller
+                            name="username"
+                            control={control}
+                            defaultValue=""
+                            render={({ field }) => (
+                                <TextField
+                                    {...field}
+                                    fullWidth
+                                    label="Tên đăng nhập"
+                                    variant="outlined"
+                                    error={Boolean(errors.username)}
+                                    helperText={errors.username?.message}
+                                    autoComplete="username"
+                                    sx={{ mb: 2 }}
                                 />
-                                <Link href="/forgot-password" underline="none">
-                                    Quên mật khẩu?
-                                </Link>
-                            </Box>
+                            )}
+                        />
 
-                            <MuiButton
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                sx={{ mt: 3, backgroundColor: '#e53935', '&:hover': { backgroundColor: '#d32f2f' } }}
-                                disabled={loginMutation.isLoading}
-                            >
-                                {loginMutation.isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
-                            </MuiButton>
+                        <Controller
+                            name="password"
+                            control={control}
+                            defaultValue=""
+                            render={({ field }) => (
+                                <TextField
+                                    {...field}
+                                    fullWidth
+                                    type="password"
+                                    label="Mật khẩu"
+                                    variant="outlined"
+                                    error={Boolean(errors.password)}
+                                    helperText={errors.password?.message}
+                                    sx={{ mb: 2 }}
+                                    autoComplete="current-password"
+                                />
+                            )}
+                        />
+
+                        <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
+                            <FormControlLabel control={<Checkbox />} label="Duy trì đăng nhập" />
+                            <Link href="/forgot-password" underline="none">
+                                Quên mật khẩu?
+                            </Link>
                         </Box>
 
-                        <Stack spacing={1} alignItems="center" mt={3}>
-                            <Typography variant="body2">
-                                Bạn chưa có tài khoản?{' '}
-                                <Link href="/register" underline="none">
-                                    Đăng ký ngay
-                                </Link>
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                hoặc đăng nhập với VNEID
-                            </Typography>
-                            <Box
-                                component="img"
-                                src={vneid}
-                                alt="VNEID"
-                                sx={{ width: 100 }}
-                            />
-                        </Stack>
+                        <MuiButton
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                mt: 3,
+                                backgroundColor: '#e53935',
+                                '&:hover': { backgroundColor: '#d32f2f' },
+                            }}
+                            disabled={loginMutation.isLoading}
+                        >
+                            {loginMutation.isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+                        </MuiButton>
+                    </Box>
+
+                    <Stack spacing={1} alignItems="center" mt={3}>
+                        <Typography variant="body2">
+                            Bạn chưa có tài khoản?{' '}
+                            <Link href="/register" underline="none">
+                                Đăng ký ngay
+                            </Link>
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" textAlign="center">
+                            hoặc đăng nhập với VNEID
+                        </Typography>
+                        <Box component="img" src={vneid} alt="VNEID" sx={{ width: 100 }} />
                     </Stack>
+                </Stack>
             </Grid>
         </Grid>
     );

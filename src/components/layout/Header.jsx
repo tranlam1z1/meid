@@ -46,9 +46,8 @@ const AuthButtons = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(2),
   marginLeft: theme.spacing(4),
-  [theme.breakpoints.down('sm')]: {
-    marginLeft: theme.spacing(1),
-    gap: theme.spacing(1),
+  [theme.breakpoints.down('md')]: {
+    display: 'none', // Ẩn AuthButtons khi ở chế độ mobile
   },
 }));
 
@@ -118,75 +117,71 @@ function Header() {
                   </MenuLink>
                 ))}
               </>
-            ) : (
+            ) : null}
+
+            {!isMobile && (
+              <AuthButtons>
+                {username ? (
+                  <Avatar
+                    src={avatar}
+                    alt="User Avatar"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                ) : (
+                  <>
+                    <Button
+                      component={Link}
+                      to="/register"
+                      variant="contained"
+                      size="medium"
+                      sx={{
+                        backgroundColor: '#a52a2a',
+                        '&:hover': {
+                          backgroundColor: '#8a2323',
+                        },
+                        border: '1px solid #f60909',
+                      }}
+                    >
+                      Đăng ký
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/login"
+                      variant="contained"
+                      size="medium"
+                      sx={{
+                        backgroundColor: '#f40909',
+                        '&:hover': {
+                          backgroundColor: '#d30808',
+                        },
+                      }}
+                    >
+                      Đăng nhập
+                    </Button>
+                  </>
+                )}
+              </AuthButtons>
+            )}
+
+            {isMobile && (
               <IconButton
-                edge="end"  // Thay đổi từ "start" thành "end" để đẩy sang phải
+                edge="end"
                 color="inherit"
                 aria-label="menu"
                 onClick={handleMenuOpen}
                 sx={{
-                  ml: 'auto', // Tự động căn lề trái để đẩy sang phải
-                  order: 1 // Đảm bảo nút menu ở cuối cùng
+                  ml: 'auto',
+                  order: 1
                 }}
               >
                 <MenuIcon />
               </IconButton>
             )}
-
-            <AuthButtons>
-              {username ? (
-                <Avatar
-                  src={avatar}
-                  alt="User Avatar"
-                  sx={{ width: 40, height: 40 }}
-                />
-              ) : (
-                <>
-                  <Button
-                    component={Link}
-                    to="/register"
-                    variant="contained"
-                    size={isMobile ? "small" : "medium"}
-                    sx={{
-                      backgroundColor: '#a52a2a',
-                      '&:hover': {
-                        backgroundColor: '#8a2323',
-                      },
-                      border: '1px solid #f60909',
-                      [theme.breakpoints.down('sm')]: {
-                        fontSize: '0.75rem',
-                        padding: theme.spacing(0.5, 1),
-                      },
-                    }}
-                  >
-                    Đăng ký
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="/login"
-                    variant="contained"
-                    size={isMobile ? "small" : "medium"}
-                    sx={{
-                      backgroundColor: '#f40909',
-                      '&:hover': {
-                        backgroundColor: '#d30808',
-                      },
-                      [theme.breakpoints.down('sm')]: {
-                        fontSize: '0.75rem',
-                        padding: theme.spacing(0.5, 1),
-                      },
-                    }}
-                  >
-                    Đăng nhập
-                  </Button>
-                </>
-              )}
-            </AuthButtons>
           </MenuItems>
         </StyledToolbar>
       </Container>
 
-      {/* Mobile menu - Điều chỉnh vị trí */}
+      {/* Menu mobile */}
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -204,9 +199,9 @@ function Header() {
             width: '60%',
             backgroundColor: '#800000',
             color: 'white',
-            marginTop: '8px', // Khoảng cách với nút menu
-            right: '16px', // Đặt vị trí right
-            left: 'auto !important', // Ghi đè left mặc định
+            marginTop: '8px',
+            right: '16px',
+            left: 'auto !important',
           },
         }}
       >
@@ -225,6 +220,77 @@ function Header() {
             {item.text}
           </MenuItem>
         ))}
+
+        {/* Thêm nút Đăng nhập và Đăng ký vào menu mobile */}
+        {!username && (
+          <>
+            <MenuItem
+              onClick={handleMenuClose}
+              component={Link}
+              to="/register"
+              sx={{
+                '&:hover': {
+                  backgroundColor: '#a52a2a',
+                },
+              }}
+            >
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{
+                  backgroundColor: '#a52a2a',
+                  '&:hover': {
+                    backgroundColor: '#8a2323',
+                  },
+                  border: '1px solid #f60909',
+                }}
+              >
+                Đăng ký
+              </Button>
+            </MenuItem>
+            <MenuItem
+              onClick={handleMenuClose}
+              component={Link}
+              to="/login"
+              sx={{
+                '&:hover': {
+                  backgroundColor: '#a52a2a',
+                },
+              }}
+            >
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{
+                  backgroundColor: '#f40909',
+                  '&:hover': {
+                    backgroundColor: '#d30808',
+                  },
+                }}
+              >
+                Đăng nhập
+              </Button>
+            </MenuItem>
+          </>
+        )}
+
+        {username && (
+          <MenuItem
+            onClick={handleMenuClose}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#a52a2a',
+              },
+            }}
+          >
+            <Avatar
+              src={avatar}
+              alt="User Avatar"
+              sx={{ width: 40, height: 40 }}
+            />
+            <Typography sx={{ ml: 2 }}>{username}</Typography>
+          </MenuItem>
+        )}
       </Menu>
     </AppBar>
   );
