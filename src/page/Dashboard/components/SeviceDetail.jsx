@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Chip, Paper, Typography } from "@mui/material";
+import { Box, Button, Chip, Typography } from "@mui/material";
 
 const ServiceDetail = () => {
     return (
@@ -53,8 +53,8 @@ const ServiceDetail = () => {
                             <Typography>Số trường đăng ký : 1</Typography>
                             <Typography>Báo giá theo đúng ký : 30.000 đ</Typography>
                         </Box>
-                        <Typography sx={{mt: 2}}>Các trường đã đăng ký :</Typography>
-                        <Button sx={{ border: '1px solid #ED1D42', borderRadius: '5px', padding: '5px 10px', color: '#ED1D42', mt: 3}}>
+                        <Typography sx={{ mt: 2 }}>Các trường đã đăng ký :</Typography>
+                        <Button sx={{ border: '1px solid #ED1D42', borderRadius: '5px', padding: '5px 10px', color: '#ED1D42', mt: 3 }}>
                             Xem các trường thông tin
                         </Button>
                     </Box>

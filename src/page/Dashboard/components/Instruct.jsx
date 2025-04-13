@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import exel from "../../../asset/image/exel.png";
 
 const Instruct = () => {
@@ -17,7 +17,7 @@ const Instruct = () => {
                             alt="Unchecked"
                             style={{ width: 40, height: 40, cursor: 'pointer' }}
                         />
-                        <Typography sx={{ color: '#008000'}}>Tải xuống template mẫu</Typography>
+                        <Typography sx={{ color: '#008000' }}>Tải xuống template mẫu</Typography>
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

@@ -11,16 +11,68 @@ import {
     Button
 } from '@mui/material';
 
-import HomeIcon from '@mui/icons-material/Home';
-import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import BusinessIcon from '@mui/icons-material/Business';
-import AppsIcon from '@mui/icons-material/Apps';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import PersonIcon from '@mui/icons-material/Person';
-import ReceiptIcon from '@mui/icons-material/Receipt';
+import {
+    Home,
+    SettingsApplications,
+    SupportAgent,
+    Business,
+    Apps,
+    Assignment,
+    Person,
+    Receipt
+} from '@mui/icons-material';
 
 const drawerWidth = 240;
+
+const menuItems = [
+    {
+        title: "Trang chủ",
+        icon: Home,
+    },
+    {
+        section: "DỊCH VỤ",
+        items: [
+            {
+                title: "Dịch vụ của tôi",
+                icon: SettingsApplications,
+            },
+            {
+                title: "Ticket hỗ trợ",
+                icon: SupportAgent,
+            }
+        ]
+    },
+    {
+        section: "DOANH NGHIỆP",
+        items: [
+            {
+                title: "Doanh nghiệp",
+                icon: Business,
+            },
+            {
+                title: "Quản lý ứng dụng",
+                icon: Apps,
+            },
+            {
+                title: "Đối soát",
+                icon: Assignment,
+            }
+        ]
+    },
+    {
+        section: "TÀI KHOẢN",
+        items: [
+            {
+                title: "Thông tin tài khoản",
+                icon: Person,
+            },
+            {
+                title: "Hóa đơn",
+                icon: Receipt,
+            }
+        ]
+    }
+];
 
 const Sidebar = () => {
     return (
@@ -35,81 +87,43 @@ const Sidebar = () => {
                     backgroundColor: '#f7f8fc',
                     pt: 1,
                     pb: 2,
-                    marginTop: '48px', // Đẩy Drawer xuống dưới Header
-                    height: 'calc(100% - 48px)', // Chiều cao trừ phần Header
+                    marginTop: '48px',
+                    height: 'calc(100% - 48px)',
                 },
             }}
         >
-
             <Box sx={{ overflow: 'auto' }}>
                 <List>
-                    {/* Trang chủ */}
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Trang chủ" />
-                    </ListItemButton>
-
-                    {/* Dịch vụ */}
-                    <Box px={2} mt={1}>
-                        <Typography variant="caption" color="text.secondary">DỊCH VỤ</Typography>
-                    </Box>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <SettingsApplicationsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Dịch vụ của tôi" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <SupportAgentIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Ticket hỗ trợ" />
-                    </ListItemButton>
-
-                    {/* Doanh nghiệp */}
-                    <Box px={2} mt={1}>
-                        <Typography variant="caption" color="text.secondary">DOANH NGHIỆP</Typography>
-                    </Box>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <BusinessIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Doanh nghiệp" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <AppsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Quản lý ứng dụng" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <AssignmentIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Đối soát" />
-                    </ListItemButton>
-
-                    {/* Tài khoản */}
-                    <Box px={2} mt={1}>
-                        <Typography variant="caption" color="text.secondary">TÀI KHOẢN</Typography>
-                    </Box>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Thông tin tài khoản" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <ReceiptIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Hóa đơn" />
-                    </ListItemButton>
+                    {menuItems.map((item, index) => (
+                        <React.Fragment key={index}>
+                            {item.section ? (
+                                <>
+                                    <Box px={2} mt={1}>
+                                        <Typography variant="caption" color="text.secondary">
+                                            {item.section}
+                                        </Typography>
+                                    </Box>
+                                    {item.items.map((subItem, subIndex) => (
+                                        <ListItemButton key={`${index}-${subIndex}`}>
+                                            <ListItemIcon>
+                                                <subItem.icon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={subItem.title} />
+                                        </ListItemButton>
+                                    ))}
+                                </>
+                            ) : (
+                                <ListItemButton key={index}>
+                                    <ListItemIcon>
+                                        <item.icon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={item.title} />
+                                </ListItemButton>
+                            )}
+                        </React.Fragment>
+                    ))}
                 </List>
 
-                {/* Trạng thái tài khoản */}
                 <Box px={2} mt={2}>
                     <Typography variant="caption" color="text.secondary">
                         TRẠNG THÁI TÀI KHOẢN

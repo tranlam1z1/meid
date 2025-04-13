@@ -8,7 +8,7 @@ export default function Header() {
             position="fixed"
             elevation={0}
             sx={{
-                backgroundColor: '#5E0208', // đỏ đậm
+                backgroundColor: '#5E0208',
                 height: '48px',
                 justifyContent: 'center',
                 px: 2,
@@ -36,7 +36,7 @@ export default function Header() {
                             width: 8,
                             height: 8,
                             borderRadius: '50%',
-                            backgroundColor: '#7ed321', // xanh lá
+                            backgroundColor: '#7ed321',
                         }}
                     />
                 </Box>
