@@ -47,7 +47,7 @@ const AuthButtons = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
   marginLeft: theme.spacing(4),
   [theme.breakpoints.down('md')]: {
-    display: 'none', // Ẩn AuthButtons khi ở chế độ mobile
+    display: 'none', 
   },
 }));
 
@@ -181,7 +181,6 @@ function Header() {
         </StyledToolbar>
       </Container>
 
-      {/* Menu mobile */}
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -221,7 +220,6 @@ function Header() {
           </MenuItem>
         ))}
 
-        {/* Thêm nút Đăng nhập và Đăng ký vào menu mobile */}
         {!username && (
           <>
             <MenuItem
