@@ -132,7 +132,7 @@ const NewsSection = () => {
                                             WebkitLineClamp: 2,
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis',
-                                            minHeight: '3em' // Ensures consistent height for 2 lines
+                                            minHeight: '3em'  
                                         }}
                                     >
                                         {item.title}
@@ -146,7 +146,7 @@ const NewsSection = () => {
                                             WebkitLineClamp: 3,
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis',
-                                            minHeight: '4.5em' // Ensures consistent height for 3 lines
+                                            minHeight: '4.5em' 
                                         }}
                                     >
                                         {item.content}
